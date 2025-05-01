@@ -1,68 +1,71 @@
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
+
+interface ProtectionTipProps {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+const ProtectionTip = ({ icon, title, description }: ProtectionTipProps) => {
+  return (
+    <div className="bg-white p-6 rounded-lg shadow-md">
+      <div className="flex items-center gap-3 mb-4">
+        <div className="bg-green-100 p-2 rounded-full">
+          <Icon name={icon} className="text-green-600" />
+        </div>
+        <h3 className="text-xl font-semibold">{title}</h3>
+      </div>
+      <p className="text-gray-700">{description}</p>
+    </div>
+  );
+};
 
 const ProtectionTips = () => {
   const tips = [
     {
-      id: 1,
-      title: "Двухфакторная аутентификация",
-      description: "Включите 2FA на всех важных аккаунтах для дополнительного уровня защиты",
-      icon: "KeyRound"
+      icon: "Shield",
+      title: "Не разглашайте данные",
+      description: "Ни при каких обстоятельствах не передавайте по телефону или в мессенджерах свои PIN-коды, пароли, CVV-коды и коды из SMS. Настоящие сотрудники банков никогда не запрашивают такую информацию."
     },
     {
-      id: 2,
-      title: "Уникальные пароли",
-      description: "Используйте разные надежные пароли для каждого сервиса и менеджер паролей",
-      icon: "Lock"
+      icon: "KeyRound",
+      title: "Используйте сложные пароли",
+      description: "Регулярно обновляйте пароли, используйте уникальные комбинации для разных сервисов и активируйте двухфакторную аутентификацию везде, где это возможно. Рассмотрите использование менеджера паролей."
     },
     {
-      id: 3,
-      title: "Проверка сайтов",
-      description: "Всегда проверяйте URL-адреса и наличие защищенного соединения (HTTPS)",
-      icon: "Globe"
+      icon: "CheckCircle",
+      title: "Проверяйте источники",
+      description: "При получении сообщений или звонков от \"банка\" всегда перезванивайте на официальный номер, указанный на обратной стороне карты или на официальном сайте. Никогда не перезванивайте на номер, указанный в подозрительном сообщении."
     },
     {
-      id: 4,
-      title: "Обновление ПО",
-      description: "Регулярно обновляйте операционную систему и приложения",
-      icon: "RefreshCw"
+      icon: "Bell",
+      title: "Следите за активностью на счетах",
+      description: "Установите уведомления о всех операциях по картам и счетам. Регулярно проверяйте выписки и немедленно сообщайте банку о подозрительных транзакциях, которые вы не совершали."
     },
     {
-      id: 5,
-      title: "Биометрическая защита",
-      description: "Используйте биометрические методы защиты для доступа к финансовым приложениям",
-      icon: "Fingerprint"
+      icon: "AlertTriangle",
+      title: "Будьте критичны",
+      description: "Не поддавайтесь на обещания быстрой прибыли, всегда сомневайтесь в \"выгодных\" предложениях и не переходите по неизвестным ссылкам. Помните, что сверхвысокая доходность всегда сопряжена с повышенным риском."
     },
     {
-      id: 6,
-      title: "Контроль разрешений",
-      description: "Проверяйте, к каким данным имеют доступ установленные приложения",
-      icon: "Shield"
+      icon: "Smartphone",
+      title: "Защитите устройства",
+      description: "Используйте надежный антивирус, регулярно обновляйте операционную систему и приложения. Не устанавливайте программы из ненадежных источников и не подключайтесь к общедоступным Wi-Fi сетям для проведения финансовых операций."
     }
   ];
 
   return (
-    <section>
-      <h2 className="text-3xl font-bold mb-8 text-center text-gray-800">Рекомендации по защите</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {tips.map((tip) => (
-          <Card key={tip.id} className="transition-all duration-300 hover:shadow-lg">
-            <CardHeader className="pb-2">
-              <div className="flex items-center gap-3">
-                <div className="bg-blue-100 p-2 rounded-full">
-                  <Icon name={tip.icon} className="text-blue-600" />
-                </div>
-                <CardTitle className="text-lg">{tip.title}</CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-600">{tip.description}</p>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-    </section>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+      {tips.map((tip, index) => (
+        <ProtectionTip 
+          key={index}
+          icon={tip.icon}
+          title={tip.title}
+          description={tip.description}
+        />
+      ))}
+    </div>
   );
 };
 
